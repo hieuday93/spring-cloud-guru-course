@@ -32,4 +32,8 @@ public class BreweryClient {
     public URI createBeer(BeerDto dto) {
         return restTemplate.postForLocation(apiHost + beerPathV1, dto);
     }
+
+    public void updateBeer(UUID beerId, BeerDto dto) {
+        restTemplate.put(apiHost + beerPathV1 + SLASH + beerId.toString(), dto);
+    }
 }
