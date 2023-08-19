@@ -1,8 +1,7 @@
 package guru.springframework.msscbreweryclient.web.client;
 
-import guru.springframework.msscbreweryclient.config.ConfigProperties;
+import guru.springframework.msscbreweryclient.config.ExternalApiConfigProperties;
 import guru.springframework.msscbreweryclient.web.model.CustomerDto;
-import lombok.Getter;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -19,7 +18,7 @@ public class CustomerClient {
     private final String customerPathV1;
     private final RestTemplate restTemplate;
 
-    public CustomerClient(RestTemplateBuilder restTemplateBuilder, ConfigProperties properties) {
+    public CustomerClient(RestTemplateBuilder restTemplateBuilder, ExternalApiConfigProperties properties) {
         this.apiHost = properties.getApiHost();
         this.customerPathV1 = properties.getCustomerPathV1();
         this.restTemplate = restTemplateBuilder.build();

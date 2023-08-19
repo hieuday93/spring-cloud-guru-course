@@ -1,6 +1,6 @@
 package guru.springframework.msscbreweryclient.web.client;
 
-import guru.springframework.msscbreweryclient.config.ConfigProperties;
+import guru.springframework.msscbreweryclient.config.ExternalApiConfigProperties;
 import guru.springframework.msscbreweryclient.web.model.BeerDto;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.stereotype.Component;
@@ -19,10 +19,10 @@ public class BreweryClient {
 
     private final RestTemplate restTemplate;
 
-    public BreweryClient(RestTemplateBuilder restTemplateBuilder, ConfigProperties configProperties) {
+    public BreweryClient(RestTemplateBuilder restTemplateBuilder, ExternalApiConfigProperties externalApiConfigProperties) {
         this.restTemplate = restTemplateBuilder.build();
-        this.apiHost = configProperties.getApiHost();
-        this.beerPathV1 = configProperties.getBeerPathV1();
+        this.apiHost = externalApiConfigProperties.getApiHost();
+        this.beerPathV1 = externalApiConfigProperties.getBeerPathV1();
     }
 
     public BeerDto getBeerById(UUID beerId) {

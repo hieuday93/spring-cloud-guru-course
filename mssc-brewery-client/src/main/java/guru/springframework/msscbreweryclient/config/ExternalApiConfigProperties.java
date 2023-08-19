@@ -8,7 +8,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(value = "sfg.brewery", ignoreUnknownFields = false)
 @RequiredArgsConstructor
 @Getter
-public class ConfigProperties {
+public class ExternalApiConfigProperties {
 
     @NotBlank
     private final String apiHost;
