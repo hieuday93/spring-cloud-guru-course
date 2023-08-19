@@ -4,10 +4,12 @@ import jakarta.validation.constraints.Min;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.validation.annotation.Validated;
 
 @ConfigurationProperties(prefix = "sfg.http.client")
 @RequiredArgsConstructor
 @Getter
+@Validated
 public class HttpClientConfigProperties {
 
     @Min(1)
