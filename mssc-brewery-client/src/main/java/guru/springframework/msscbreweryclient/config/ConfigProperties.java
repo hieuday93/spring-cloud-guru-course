@@ -16,4 +16,7 @@ public class ConfigProperties {
     @NotBlank
     private final String beerPathV1;
 
+    @NotBlank
+    private final String customerPathV1;
+
 }
