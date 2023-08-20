@@ -30,8 +30,8 @@ public class BeerServiceImpl implements BeerService {
     }
 
     @Override
-    public void updateBeer(BeerDto beerDto) {
-        log.info("updateBeer({})", beerDto);
+    public void updateBeer(UUID beerId, BeerDto beerDto) {
+        log.info("updateBeer({}, {})", beerId, beerDto);
         //todo implement actual update for a beer
     }
 

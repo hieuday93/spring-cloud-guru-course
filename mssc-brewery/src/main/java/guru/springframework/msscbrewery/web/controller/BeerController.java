@@ -2,6 +2,7 @@ package guru.springframework.msscbrewery.web.controller;
 
 import guru.springframework.msscbrewery.services.BeerService;
 import guru.springframework.msscbrewery.web.model.BeerDto;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
@@ -9,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.UUID;
 
 @RequestMapping("api/v1/beer")
@@ -26,22 +28,19 @@ public class BeerController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> saveNewBeer(@RequestBody BeerDto beerDto) {
+    public ResponseEntity<Void> saveNewBeer(@Valid @RequestBody BeerDto beerDto) {
         log.info("HTTP POST /api/v1/beer {}", beerDto);
         BeerDto savedDto = beerService.saveNewBeer(beerDto);
 
         HttpHeaders headers = new HttpHeaders();
         //todo add hostname to location uri
-        headers.add("Location", "/api/v1/beer/" + savedDto.getId().toString());
-
-        return ResponseEntity.noContent().headers(headers).build();
+        return ResponseEntity.created(URI.create("/api/v1/beer/" + savedDto.getId().toString())).headers(headers).build();
     }
 
     @PutMapping("/{beerId}")
-    public ResponseEntity<BeerDto> updateBeer(@PathVariable UUID beerId, @RequestBody BeerDto beerDto) {
+    public ResponseEntity<BeerDto> updateBeer(@PathVariable UUID beerId, @Valid @RequestBody BeerDto beerDto) {
         log.info("HTTP PUT /api/v1/beer/{} {}", beerId, beerDto);
-        beerDto.setId(beerId);
-        beerService.updateBeer(beerDto);
+        beerService.updateBeer(beerId, beerDto);
         return ResponseEntity.noContent().build();
     }
 
